@@ -1,15 +1,16 @@
 import { motion } from "framer-motion";
 import { Stethoscope, Award, GraduationCap, ShieldCheck } from "lucide-react";
 
-const credentials = ["MBBS", "MD (Medicine)", "General Physician", "Diabetes Specialist"];
+const DOCTOR_IMG = "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80";
+const credentials = ["MBBS", "MD Medicine", "General Physician", "Diabetes Expert"];
 
 export function About() {
   return (
     <section id="about" className="py-20 md:py-28 bg-secondary/50 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-gold/10 rounded-full blur-3xl" />
       <div className="container mx-auto px-5 relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Avatar */}
+          {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -17,24 +18,22 @@ export function About() {
             transition={{ duration: 0.7 }}
             className="relative mx-auto lg:mx-0 max-w-md w-full"
           >
-            <div className="relative aspect-square rounded-[2rem] bg-gradient-navy shadow-premium overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-mesh opacity-60" />
-              {/* Doctor silhouette */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <svg viewBox="0 0 200 200" className="w-3/4 h-3/4 text-gold/80">
-                  <circle cx="100" cy="70" r="32" fill="currentColor" opacity="0.85" />
-                  <path d="M40 200 Q40 130 100 130 Q160 130 160 200 Z" fill="currentColor" opacity="0.85" />
-                  <rect x="85" y="130" width="30" height="50" fill="white" opacity="0.95" />
-                  <circle cx="100" cy="158" r="3" fill="var(--color-navy)" />
-                  <path d="M95 145 L95 175 M105 145 L105 175" stroke="var(--color-navy)" strokeWidth="2" />
-                </svg>
-              </div>
+            <div className="absolute -inset-6 bg-gold/20 blur-3xl rounded-[3rem]" />
+            <div
+              className="relative aspect-[4/5] rounded-[2rem] overflow-hidden border-4 border-gold shadow-premium"
+              style={{ boxShadow: "0 0 60px rgba(201,168,76,0.35)" }}
+            >
+              <img
+                src={DOCTOR_IMG}
+                alt="Dr. S.K. Maurya"
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-navy via-navy/80 to-transparent">
                 <div className="text-white font-display text-xl font-semibold">Dr. S.K. Maurya</div>
                 <div className="text-gold-light text-sm">MBBS, MD (Medicine)</div>
               </div>
             </div>
-            {/* Floating badge */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity }}
@@ -42,8 +41,8 @@ export function About() {
             >
               <Award className="w-7 h-7 text-gold" />
               <div>
-                <div className="text-xs text-muted-foreground">Top Rated</div>
-                <div className="text-sm font-bold text-navy">4.9 ★ in Gorakhpur</div>
+                <div className="text-xs text-muted-foreground">Specialty</div>
+                <div className="text-sm font-bold text-navy">MD Medicine</div>
               </div>
             </motion.div>
             <motion.div
@@ -77,14 +76,18 @@ export function About() {
             </p>
 
             <div className="flex flex-wrap gap-2.5 mb-8">
-              {credentials.map((c) => (
-                <span
+              {credentials.map((c, i) => (
+                <motion.span
                   key={c}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-navy/10 text-navy text-sm font-medium shadow-card-soft"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border-2 border-gold/40 text-navy text-sm font-medium shadow-card-soft"
                 >
                   <GraduationCap className="w-3.5 h-3.5 text-gold" />
                   {c}
-                </span>
+                </motion.span>
               ))}
             </div>
 

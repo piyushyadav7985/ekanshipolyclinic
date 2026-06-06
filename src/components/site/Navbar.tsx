@@ -14,7 +14,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -27,22 +27,22 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass-card shadow-card-soft py-3" : "bg-transparent py-5"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md ${
+        scrolled ? "bg-navy/90 shadow-premium py-3" : "bg-navy/70 py-5"
       }`}
     >
       <nav className="container mx-auto px-5 flex items-center justify-between">
         <a
           href="#home"
           onClick={(e) => { e.preventDefault(); handleClick("#home"); }}
-          className="flex items-center gap-2 group"
+          className="flex items-center gap-2.5 group"
           aria-label="Ekanshi Polyclinic home"
         >
-          <span className="relative w-9 h-9 rounded-lg bg-gradient-navy flex items-center justify-center shadow-card-soft">
-            <Plus className="w-5 h-5 text-white" strokeWidth={3} />
+          <span className="relative w-10 h-10 rounded-lg bg-white flex items-center justify-center shadow-card-soft">
+            <Plus className="w-6 h-6 text-red-600" strokeWidth={3.5} />
             <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-gold" />
           </span>
-          <span className="font-display text-xl md:text-2xl font-bold text-navy leading-none">
+          <span className="font-display text-xl md:text-2xl font-bold text-white leading-none">
             Ekanshi <span className="text-gold">Polyclinic</span>
           </span>
         </a>
@@ -53,7 +53,8 @@ export function Navbar() {
               <a
                 href={l.href}
                 onClick={(e) => { e.preventDefault(); handleClick(l.href); }}
-                className="text-sm font-medium text-navy/80 hover:text-gold transition-colors relative after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 hover:after:w-full after:bg-gold after:transition-all"
+                style={{ color: "rgba(255,255,255,0.85)" }}
+                className="text-sm font-medium hover:!text-gold transition-colors relative after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 hover:after:w-full after:bg-gold after:transition-all"
               >
                 {l.label}
               </a>
@@ -71,7 +72,7 @@ export function Navbar() {
           <button
             aria-label="Toggle menu"
             onClick={() => setOpen((v) => !v)}
-            className="lg:hidden p-2 rounded-md text-navy"
+            className="lg:hidden p-2 rounded-md text-white"
           >
             {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -79,14 +80,14 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div className="lg:hidden mt-3 mx-5 glass-card rounded-2xl p-5 animate-fade-in">
+        <div className="lg:hidden mt-3 mx-5 bg-navy/95 backdrop-blur-lg rounded-2xl p-5 animate-fade-in border border-white/10">
           <ul className="flex flex-col gap-1">
             {links.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
                   onClick={(e) => { e.preventDefault(); handleClick(l.href); }}
-                  className="block py-3 px-3 rounded-lg text-navy font-medium hover:bg-navy/5"
+                  className="block py-3 px-3 rounded-lg text-white/90 font-medium hover:bg-white/10 hover:text-gold"
                 >
                   {l.label}
                 </a>
