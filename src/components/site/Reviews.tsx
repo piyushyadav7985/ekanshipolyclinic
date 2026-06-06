@@ -4,17 +4,17 @@ import { Star, Quote, ExternalLink } from "lucide-react";
 const reviews = [
   {
     name: "Pratik Kannaujia",
-    initials: "PK",
+    avatar: "https://i.pravatar.cc/80?img=12",
     text: "Dr. S.K. Maurya is such a good and caring doctor. He guided me during my whole treatment which was really helpful. Thank you doctor for everything.",
   },
   {
     name: "Nasruddin Khan",
-    initials: "NK",
+    avatar: "https://i.pravatar.cc/80?img=15",
     text: "Dr SK Maurya is one of the most talented and well experienced doctors in Gorakhpur. I strongly recommend anyone who really wants good treatment.",
   },
   {
     name: "Rikesh Roy",
-    initials: "RR",
+    avatar: "https://i.pravatar.cc/80?img=33",
     text: "I would like to express my heartfelt thanks to Dr. S.K. Maurya and all the staff for their excellent service and compassionate care.",
   },
 ];
@@ -47,23 +47,34 @@ export function Reviews() {
           {reviews.map((r, i) => (
             <motion.article
               key={r.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={{ duration: 0.5, delay: i * 0.15 }}
               className="relative bg-white rounded-2xl p-7 shadow-card-soft hover:shadow-card-hover hover:-translate-y-1 transition-all border border-navy/5"
             >
-              <Quote className="absolute top-5 right-5 w-10 h-10 text-gold/25" fill="currentColor" />
-              <div className="flex gap-0.5 mb-4 text-gold">
+              <Quote className="absolute -top-3 left-6 w-12 h-12 text-gold" fill="currentColor" />
+              <div className="flex gap-0.5 mb-4 mt-4 text-gold">
                 {[0, 1, 2, 3, 4].map((s) => (
-                  <Star key={s} className="w-4 h-4 fill-current" />
+                  <motion.div
+                    key={s}
+                    initial={{ scale: 0, rotate: -180 }}
+                    whileInView={{ scale: 1, rotate: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: i * 0.15 + s * 0.07 }}
+                  >
+                    <Star className="w-4 h-4 fill-current" />
+                  </motion.div>
                 ))}
               </div>
               <p className="text-foreground/85 leading-relaxed mb-6 text-sm">"{r.text}"</p>
               <div className="flex items-center gap-3 pt-5 border-t border-navy/5">
-                <div className="w-11 h-11 rounded-full bg-gradient-navy flex items-center justify-center text-gold font-semibold text-sm">
-                  {r.initials}
-                </div>
+                <img
+                  src={r.avatar}
+                  alt={r.name}
+                  loading="lazy"
+                  className="w-11 h-11 rounded-full object-cover border-2 border-gold/40"
+                />
                 <div>
                   <div className="font-semibold text-navy text-sm">{r.name}</div>
                   <div className="text-xs text-muted-foreground">Verified Google Review</div>
