@@ -42,27 +42,27 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="py-20 md:py-28 bg-background relative">
-      <div className="container mx-auto px-5">
+    <section id="services" className="py-12 md:py-20 bg-background relative">
+      <div className="container mx-auto px-6 md:px-8 max-w-[1200px]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-2xl mx-auto mb-14"
+          className="text-center max-w-2xl mx-auto mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 text-gold-dark text-xs font-semibold mb-5">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 text-gold-dark font-semibold mb-4" style={{ fontSize: "0.75rem", letterSpacing: "0.1em" }}>
             OUR EXPERTISE
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-navy mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-navy mb-6">
             Conditions <span className="text-gold">We Treat</span>
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground" style={{ lineHeight: 1.75 }}>
             Comprehensive medical care across the most common and critical conditions — backed by years of expertise.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
           {services.map((s, i) => (
             <motion.div
               key={s.title}
@@ -72,7 +72,7 @@ export function Services() {
               transition={{ duration: 0.5, delay: i * 0.08 }}
               className="group relative bg-white rounded-2xl overflow-hidden shadow-card-soft hover:shadow-card-hover hover:scale-[1.03] transition-all duration-300"
             >
-              <div className="relative h-[180px] overflow-hidden bg-navy/5">
+              <div className="relative h-[160px] md:h-[180px] overflow-hidden bg-navy/5">
                 <img
                   src={s.img}
                   alt={s.title}
@@ -81,12 +81,12 @@ export function Services() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />
               </div>
-              <div className="p-6">
+              <div className="p-4 md:p-6">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gold/20 to-gold/5 flex items-center justify-center mb-4 -mt-12 relative border-4 border-white shadow-card-soft">
                   <s.icon className="w-6 h-6 text-gold" strokeWidth={1.8} />
                 </div>
                 <h3 className="text-xl font-bold text-navy mb-2 font-display">{s.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
+                <p className="text-muted-foreground text-sm" style={{ lineHeight: 1.75 }}>{s.desc}</p>
               </div>
             </motion.div>
           ))}
