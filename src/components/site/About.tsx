@@ -6,56 +6,62 @@ const credentials = ["MBBS", "MD Medicine", "General Physician", "Diabetes Exper
 
 export function About() {
   return (
-    <section id="about" className="py-20 md:py-28 bg-secondary/50 relative overflow-hidden">
+    <section id="about" className="py-12 md:py-20 bg-secondary/50 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-96 h-96 bg-gold/10 rounded-full blur-3xl" />
-      <div className="container mx-auto px-5 relative">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="container mx-auto px-6 md:px-8 max-w-[1200px] relative">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
           {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="relative mx-auto lg:mx-0 max-w-md w-full"
+            className="relative mx-auto lg:mx-0 max-w-[320px] md:max-w-md w-full"
           >
             <div className="absolute -inset-6 bg-gold/20 blur-3xl rounded-[3rem]" />
             <div
-              className="relative aspect-[4/5] rounded-[2rem] overflow-hidden border-4 border-gold shadow-premium"
+              className="relative aspect-[4/5] rounded-[2rem] border-4 border-gold shadow-premium"
               style={{ boxShadow: "0 0 60px rgba(201,168,76,0.35)" }}
             >
-              <img
-                src={DOCTOR_IMG}
-                alt="Dr. S.K. Maurya"
-                loading="lazy"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-navy via-navy/80 to-transparent">
-                <div className="text-white font-display text-xl font-semibold">Dr. S.K. Maurya</div>
-                <div className="text-gold-light text-sm">MBBS, MD (Medicine)</div>
+              <div className="absolute inset-0 rounded-[1.7rem] overflow-hidden">
+                <img
+                  src={DOCTOR_IMG}
+                  alt="Dr. S.K. Maurya"
+                  loading="lazy"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-navy via-navy/80 to-transparent">
+                  <div className="text-white font-display text-xl font-semibold">Dr. S.K. Maurya</div>
+                  <div className="text-gold-light text-sm">MBBS, MD (Medicine)</div>
+                </div>
               </div>
+
+              {/* Floating labels inside card bounds */}
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="absolute glass-card rounded-2xl p-3 shadow-premium flex items-center gap-2"
+                style={{ top: "-12px", left: "16px", zIndex: 20 }}
+              >
+                <Award className="w-5 h-5 text-gold" />
+                <div>
+                  <div className="text-[10px] text-muted-foreground leading-tight">Specialty</div>
+                  <div className="text-xs font-bold text-navy">MD Medicine</div>
+                </div>
+              </motion.div>
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 5, repeat: Infinity }}
+                className="absolute glass-card rounded-2xl p-3 shadow-premium flex items-center gap-2"
+                style={{ bottom: "16px", left: "16px", zIndex: 20 }}
+              >
+                <ShieldCheck className="w-5 h-5 text-gold" />
+                <div>
+                  <div className="text-[10px] text-muted-foreground leading-tight">Verified</div>
+                  <div className="text-xs font-bold text-navy">Board Certified</div>
+                </div>
+              </motion.div>
             </div>
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity }}
-              className="absolute -top-5 -right-5 glass-card rounded-2xl p-4 shadow-premium flex items-center gap-3"
-            >
-              <Award className="w-7 h-7 text-gold" />
-              <div>
-                <div className="text-xs text-muted-foreground">Specialty</div>
-                <div className="text-sm font-bold text-navy">MD Medicine</div>
-              </div>
-            </motion.div>
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 5, repeat: Infinity }}
-              className="absolute -bottom-5 -left-5 glass-card rounded-2xl p-4 shadow-premium flex items-center gap-3"
-            >
-              <ShieldCheck className="w-7 h-7 text-gold" />
-              <div>
-                <div className="text-xs text-muted-foreground">Verified</div>
-                <div className="text-sm font-bold text-navy">Board Certified</div>
-              </div>
-            </motion.div>
           </motion.div>
 
           {/* Text */}
